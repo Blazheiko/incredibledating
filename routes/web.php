@@ -29,3 +29,10 @@ Route::get('/post/{post}/show',   ['as' => 'post.show',    'uses' => 'BlogContro
 Route::get('/post/{post}/edit',   ['as' => 'post.edit',    'uses' => 'BlogController@edit']);
 Route::post('/post/{post}',       ['as' => 'post.update',  'uses' => 'BlogController@update']);
 Route::get('/post/{post}/delete', ['as' => 'post.destroy', 'uses' => 'BlogController@destroy']);
+
+Route::get('/comment/create',           ['as' => 'comment.create',  'uses' => 'CommentController@create']);
+Route::post('/comment/{post}/store',    ['as' => 'comment.store',   'uses' => 'CommentController@store']);
+Route::get('/comment/{comment}/show',   ['as' => 'comment.show',    'uses' => 'CommentController@show']);
+Route::get('/comment/{comment}/edit',   ['as' => 'comment.edit',    'uses' => 'CommentController@edit']);
+Route::post('/comment/{comment}',       ['as' => 'comment.update',  'uses' => 'CommentController@update']);
+Route::get('/comment/{comment}/delete', ['as' => 'comment.destroy', 'uses' => 'CommentController@destroy']);

@@ -37,16 +37,53 @@
                             </article>
 
                             <div style="float: left; margin-right: 3px">
-                                <form action="/post/{{ $post->id}}/edit"><button>Edit</button> </form>
+                                <form action="/post/{{ $post->id}}/edit"><button>Редактировать</button> </form>
 
                             </div>
 
-                            <form action="/post/{{ $post->id}}/delete"><button>Delete</button></form>
+                            <form action="/post/{{ $post->id}}/delete"><button>Удалить</button></form>
+
+                            <hr>
+
+                            {{ Form::open (['route'=> ['comment.store',$post]]) }}
+                            <div class="form-group">
+                                {{ Form::label ('Коментарий:') }}
+                                {{ Form::text ('comment',null,['class' => 'form-control' ]) }}
+                            </div>
+                            <div class="form-group">
+                                {{ Form::submit ('Сохранить',['class' => 'btn btn-primary' ]) }}
+                            </div>
+                            {{ Form::close() }}
+
+                          <hr>
+                             <div class="comment">
+                                 @foreach($comments as $comment)
+
+                                     <article>
+
+                                         <h2>
+                                             {{--<a href="{{ url('post/'.$post->id.'/show') }}">{{$post->title}}</a>--}}
+                                             {{--{{$post->title}}--}}
+                                         </h2>
+                                         <p>
+                                             {{--{{User::find($comment->user_id)-> name}}--}}
+                                         </p>
+                                         <p>
+                                             {{$comment->comment}}
+                                         </p>
+                                         <p>
+                                             {{$post->created_at}}
+                                         </p>
+
+
+                                     </article>
+
+                                 @endforeach
+                             </div>
+
+
 
                         @endif
-
-
-
 
                     </div>
                 </div>
