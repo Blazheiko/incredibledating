@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Post;
 use App\User;
 use Illuminate\Http\Request;
@@ -16,7 +17,9 @@ class BlogController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::with('user')->get();
+        return view('blogs_ general')->with(['posts'=>$posts]);
+
     }
 
     /**
@@ -70,7 +73,8 @@ class BlogController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        $comments = $post ->comments()->get();
+        $comments =Comment::with('user') ->where('post_id', $id )
+            ->get()->reverse();
         return view('post')->with(['post'=>$post,'comments'=>$comments]);
     }
 

@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Message;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', //'gender',
+        'name', 'email', 'password', 'gender',
     ];
 
     /**
@@ -53,5 +54,9 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->is_admin; // поле is_admin в таблице users
+    }
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
     }
 }

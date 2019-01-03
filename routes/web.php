@@ -21,8 +21,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/profile',            ['as' => 'profile',   'uses' => 'UserController@profile']);
 Route::post('profile',            ['as' => 'profile.update',  'uses' =>'UserController@update_avatar']);
+Route::post('/profile/store',     ['before' => 'csrf','as' => 'profile.store',   'uses' => 'ProfileController@store']);
+
 Route::get('/blog',               ['as' => 'blog',   'uses' => 'UserController@blog']);
 
+Route::get('/blogs',              ['as' => 'blogs',        'uses' => 'BlogController@index']);
 Route::get('/post/create',        ['as' => 'post.create',  'uses' => 'BlogController@create']);
 Route::post('/post',              ['as' => 'post.store',   'uses' => 'BlogController@store']);
 Route::get('/post/{post}/show',   ['as' => 'post.show',    'uses' => 'BlogController@show']);

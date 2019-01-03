@@ -19,21 +19,56 @@
                         <input type="submit" class="pull-right btn btn-sm btn-primary">
                     </form>
 
+                    {{--{{ Form::open (['route'=> 'profile.update']) }}--}}
+                    {{--<div class="form-group">--}}
+                        {{--{{Form::label ('Обновить свое фото') }}--}}
+                        {{--{{Form::file('avatar')}}--}}
+                        {{--{{Form::submit ('Сохранить',['class' => 'btn btn-primary' ]) }}--}}
+                    {{--</div>--}}
+                    {{--{{ Form::close() }}--}}
+
                 </div>
+
+                <hr>
+                {{--<iframe width="900" height="510" src="https://www.youtube.com/embed/T1n9tQKp6N8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>--}}
+                <hr>
 
 
             </div>
             <div class="row">
+                @if($profile)
                 <div class="col-md-10 col-md-offset-1">
+
                     <p>
                         {{'Возраст - '. $profile->age}}
                     </p>
+
                 </div>
                 <div class="col-md-10 col-md-offset-1">
+
                     <p>
                         {{'Увлечения - '. $profile->hobbi}}
                     </p>
+
                 </div>
+                @else
+
+                    {{ Form::open (['route'=> 'profile.store']) }}
+                    {{Form::token()}}
+                    <div class="form-group">
+                        {{ Form::label ('Сколько вам лет') }}
+                        {{ Form::number ('age',null,['class' => 'form-control' ]) }}
+                    </div>
+                    <div class="form-group">
+                        {{ Form::label ('Ваши увлечения') }}
+                        {{ Form::textarea ('hobbi',null,['class' => 'form-control' ]) }}
+                    </div>
+                    <div class="form-group">
+                        {{ Form::submit ('Сохранить',['class' => 'btn btn-primary' ]) }}
+                    </div>
+                    {{ Form::close() }}
+
+                @endif
 
             </div>
 

@@ -30,8 +30,10 @@ class UserController extends Controller
             $user = Auth::user();
             $user->avatar = $filename;
             $user->save();
+            $profile= $user -> profile;
+            return view('profile', ['user' => $user, 'profile' => $profile] );
         }
-        return view('profile', array('user' => Auth::user()) );
+        return redirect()->route('profile');
 
     }
 

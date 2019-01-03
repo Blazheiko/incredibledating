@@ -17,24 +17,38 @@
 
                             </div>
                         @else
-                            <article>
+                            <hr>
+                          <div class="container">
+                              <div class="row">
+                              <article>
+                                  <p>
+                                      <img src="/uploads/avatars/{{ $post->user->avatar}}" style="width:32px; height:32px;  top:-5px; left:0px; border-radius:50%">
+                                      {{$post->user->name}}
 
-                                <h2>
-                                    {{$post->title}}
-                                </h2>
-                                <p>
-                                    {{$post->post}}
-                                </p>
-                                <p>
-                                    {{'Создан' }}
-                                    {{$post->created_at}}
-                                </p>
-                                <p>
-                                    {{'Обновлен'}}
-                                    {{$post->updated_at}}
-                                </p>
+                                  </p>
 
-                            </article>
+                                  <h2>
+                                      {{$post->title}}
+                                  </h2>
+                                  <p>
+                                      {{$post->post}}
+                                  </p>
+                                  <p>
+                                      {{'Создан' }}
+                                      {{$post->created_at}}
+                                  </p>
+                                  <p>
+                                      {{'Обновлен'}}
+                                      {{$post->updated_at}}
+                                  </p>
+
+                              </article>
+                              </div>
+                          </div>
+
+
+
+                            @if( $post->user == Auth::user())
 
                             <div style="float: left; margin-right: 3px">
                                 <form action="/post/{{ $post->id}}/edit"><button>Редактировать</button> </form>
@@ -42,6 +56,8 @@
                             </div>
 
                             <form action="/post/{{ $post->id}}/delete"><button>Удалить</button></form>
+
+                            @endif
 
                             <hr>
 
@@ -55,30 +71,34 @@
                             </div>
                             {{ Form::close() }}
 
-                          <hr>
+
                              <div class="comment">
-                                 @foreach($comments as $comment)
+                                 <ul class="list-group">
+                                     @foreach($comments as $comment)
 
-                                     <article>
+                                         <li class="list-group-item">
 
-                                         <h2>
-                                             {{--<a href="{{ url('post/'.$post->id.'/show') }}">{{$post->title}}</a>--}}
-                                             {{--{{$post->title}}--}}
-                                         </h2>
-                                         <p>
-                                             {{--{{User::find($comment->user_id)-> name}}--}}
-                                         </p>
-                                         <p>
-                                             {{$comment->comment}}
-                                         </p>
-                                         <p>
-                                             {{$post->created_at}}
-                                         </p>
+                                             <h2>
+                                                 {{--<a href="{{ url('post/'.$post->id.'/show') }}">{{$post->title}}</a>--}}
+                                                 {{--{{$post->title}}--}}
+                                             </h2>
+                                             <p>
+                                                 {{--{{User::find($comment->user_id)-> name}}--}}
+                                                 {{$comment->user->name }}
+                                             </p>
+                                             <p>
+                                                 {{$comment->comment}}
+                                             </p>
+                                             <p>
+                                                 {{$post->created_at}}
+                                             </p>
 
 
-                                     </article>
+                                         </li>
 
-                                 @endforeach
+                                     @endforeach
+                                 </ul>
+
                              </div>
 
 
