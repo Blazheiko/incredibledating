@@ -39,3 +39,7 @@ Route::get('/comment/{comment}/show',   ['as' => 'comment.show',    'uses' => 'C
 Route::get('/comment/{comment}/edit',   ['as' => 'comment.edit',    'uses' => 'CommentController@edit']);
 Route::post('/comment/{comment}',       ['as' => 'comment.update',  'uses' => 'CommentController@update']);
 Route::get('/comment/{comment}/delete', ['as' => 'comment.destroy', 'uses' => 'CommentController@destroy']);
+
+Route::get('/chat', 'ChatsController@index');
+Route::get('messages', 'ChatsController@fetchMessages');
+Route::post('messages', 'ChatsController@sendMessage');

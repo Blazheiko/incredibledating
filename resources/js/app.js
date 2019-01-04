@@ -6,28 +6,75 @@
  */
 
 require('./bootstrap');
-
 window.Vue = require('vue');
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+//Vue.component('example', require('./components/Example.vue'));
+Vue.component('chat-messages', require('./components/ChatMessages.vue'));
+Vue.component('chat-form', require('./components/ChatForm.vue'));
+// Vue.component('new-photo', require('./components/NewPhoto.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+
+    data: {
+        messages: []
+    },
+
+    created() {
+        this.fetchMessages();
+
+        Echo.private('chat')
+            .listen('MessageSent', (e) => {
+                this.messages.push({
+                    message: e.message.message,
+                    photo_url: e.message.photo_url,
+                    is_photo:e.message.is_photo,
+                    user: e.user
+                });
+            });
+
+
+    },
+    updated(){
+        var container =app.$refs.messageDisplay;
+        // var container = document.getElementById('#chatcontainer');
+        container.scrollTop = container.scrollHeight;
+    },
+
+    methods: {
+        fetchMessages() {
+            axios.get('/messages').then(response => {
+                this.messages = response.data;
+            });
+        },
+
+        addMessage(message) {
+            this.messages.push(message);
+
+            axios.post('/messages', message).then(response => {
+                console.log(response.data);
+            });
+        },
+        update(e) {
+            e.preventDefault();
+
+            let photoname = this.gatherFormData();
+
+            axios.post('photo', photoname )
+                .then(response => this.messages.push({
+                    message: response.data.message.message,
+                    photo_url: response.data.message.photo_url,
+                    is_photo:response.data.message.is_photo,
+                    user: response.data.user
+                }));
+        },
+
+        gatherFormData() {
+            const data = new FormData();
+
+            data.append('photo', this.$refs.photo.files[0]);
+
+            return data;
+        },
+    }
 });
