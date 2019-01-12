@@ -19,6 +19,21 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
+        .container{
+            overflow: hidden;
+            width:900px
+        }
+        .row{
+            width: 900px;
+            white-space:nowrap;
+        }
+        /*.row div{*/
+            /*display:inline-block;*/
+            /*border:1px solid black;*/
+        /*}*/
+        .chat-list {
+            float:right;
+        }
         .chat {
             list-style: none;
             margin: 0;
@@ -37,8 +52,10 @@
         }
 
         .panel-body {
+            float:left;
             overflow-y: scroll;
-            height: 350px;
+            height: 400px;
+            width: 585px;
         }
 
         ::-webkit-scrollbar-track {
@@ -55,6 +72,100 @@
             -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
             background-color: #555;
         }
+        @import url('https://fonts.googleapis.com/css?family=PT+Sans+Caption');
+        .top-menu {
+            margin: 0 60px;
+            position: relative;
+            background: #C8C9CE;
+            box-shadow:
+                inset 1px 0 0 rgba(255,255,255,.1),
+                inset -1px 0 0 rgba(255,255,255,.1),
+                inset 150px 0 150px -150px rgba(255,255,255,.12),
+                inset -150px 0 150px -150px rgba(255,255,255,.12);
+        }
+        .top-menu:before,
+        .top-menu:after {
+            content: "";
+            position: absolute;
+            z-index: 2;
+            left: 0;
+            width: 100%;
+            height: 3px;
+        }
+        .top-menu:before {
+            top: 0;
+            border-bottom: 1px dashed rgba(255,255,255,.2);
+        }
+        .top-menu:after {
+            bottom: 0;
+            border-top: 1px dashed rgba(255,255,255,.2);
+        }
+        .menu-main {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+        .menu-main:before,
+        .menu-main:after {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 0;
+            top: 8px;
+            border-top: 18px solid #C8C9CE;
+            border-bottom: 18px solid #C8C9CE;
+            transform: rotate(360deg);
+            z-index: -1;
+        }
+        .menu-main:before {
+            left: -30px;
+            border-left: 12px solid rgba(255, 255, 255, 0);
+        }
+        .menu-main:after {
+            right: -30px;
+            border-right: 12px solid rgba(255, 255, 255, 0);
+        }
+        .menu-main li {
+            display: inline-block;
+            margin-right: -4px;
+        }
+        .menu-main a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 15px 30px;
+            font-family: 'PT Sans Caption', sans-serif;
+            color: white;
+            transition: .3s linear;
+        }
+        .menu-main a.current,
+        .menu-main a:hover {background: rgba(0,0,0,.2);}
+        @media (max-width: 680px) {
+            .top-menu {margin: 0;}
+            .menu-main li {
+                display: block;
+                margin-right: 0;
+            }
+            .menu-main:before,
+            .menu-main:after {content: none;}
+            .menu-main a {display: block;}
+        }
+        .bottom_block {
+            margin:0px;
+            text-align:left;
+            font-size:14px;
+            font-family:Arial, Helvetica, sans-serif;
+            background-color:#F9FDFF;
+            position:absolute;
+            width: 200px;
+            left: 15px;
+            bottom: 0px;}
+        .col-md-4 portfolio-item{
+            position:relative;
+            width:200px;
+            height:200px;
+
+        }
     </style>
 </head>
 <body>
@@ -64,16 +175,20 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                <a href="{{ url('chat/') }}"> Chat </a>
+                {{--<a href="{{ url('chat/') }}"> Chat </a>--}}
+                {{--<a href="/blogs">Blogs</a>--}}
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
+                    <span href="/blogs" class="navbar-toggler-icon">БЛОГИ</span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                    {{--<ul class="navbar-nav mr-auto">--}}
+                        {{--<li><a class="navbar-brand" href="">Главная страница </a></li>--}}
+                        {{--<li><a class="navbar-brand" href="/blogs">Блоги </a></li>--}}
+                        {{--<li><a class="navbar-brand" href="">Месседжер </a></li>--}}
 
-                    </ul>
+                    {{--</ul>--}}
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -143,6 +258,13 @@
                     </ul>
                 </div>
             </div>
+        </nav>
+        <nav class="top-menu">
+            <ul class="menu-main">
+                <li><a href="/home" class="current">Главная</a></li>
+                <li><a href="/blogs">Блоги</a></li>
+                <li><a href="{{ url('chat/') }}">Чат</a></li>
+            </ul>
         </nav>
 
         <main class="py-4">

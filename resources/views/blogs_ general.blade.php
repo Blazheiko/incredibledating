@@ -6,7 +6,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h1>BLOG</h1>
+                        <h1>Блоги всех пользователей</h1>
                         <a href="{{ url('post/create') }}">Создать новую статью</a></div>
 
                    <hr>

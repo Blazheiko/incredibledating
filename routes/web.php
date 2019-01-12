@@ -19,9 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/profile',            ['as' => 'profile',   'uses' => 'UserController@profile']);
-Route::post('profile',            ['as' => 'profile.update',  'uses' =>'UserController@update_avatar']);
-Route::post('/profile/store',     ['before' => 'csrf','as' => 'profile.store',   'uses' => 'ProfileController@store']);
+Route::get('/profile',               ['as' => 'profile',   'uses' => 'UserController@profile']);
+Route::post('profile',               ['as' => 'profile.update',  'uses' =>'UserController@update_avatar']);
+Route::get('/profile/{profile}/show',['as' => 'profile.show',    'uses' => 'UserController@show']);
+Route::get('/profile/{profile}/edit',['as' => 'profile.edit',    'uses' => 'UserController@edit']);
+Route::post('/profile/store',        ['before' => 'csrf','as' => 'profile.store',   'uses' => 'ProfileController@store']);
 
 Route::get('/blog',               ['as' => 'blog',   'uses' => 'UserController@blog']);
 
@@ -43,3 +45,4 @@ Route::get('/comment/{comment}/delete', ['as' => 'comment.destroy', 'uses' => 'C
 Route::get('/chat', 'ChatsController@index');
 Route::get('messages', 'ChatsController@fetchMessages');
 Route::post('messages', 'ChatsController@sendMessage');
+Route::post('/photo',            ['as' => 'addphoto',  'uses' =>'UploadPhotoController']);

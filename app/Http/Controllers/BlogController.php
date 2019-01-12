@@ -120,9 +120,14 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find(Auth::user()->id);
-
-        $user ->Posts()->where('id',$id)->delete();
+//        $user = User::find(Auth::user()->id);
+//
+//        $post = $user ->posts()->where('id',$id);//->delete();
+//        $post ->comments()->get()->delete();
+//        $post ->delete();
+        $post =Post::find($id);
+        $post ->comments()->delete();
+        $post ->delete();
         return redirect()->route('blog');
     }
 }

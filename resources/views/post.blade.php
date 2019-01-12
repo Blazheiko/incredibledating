@@ -10,7 +10,7 @@
                     </div>
 
 
-                    <div class="panel-body">
+                    <div class="page-item">
                         @if (session('status'))
                             <div class="alert alert-success">
                                 {{ session('status') }}

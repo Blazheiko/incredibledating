@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Profile;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
@@ -13,6 +15,19 @@ class UserController extends Controller
         $user = Auth::user();
         $profile= $user -> profile;
         //dd($profile);
+        return view('profile', ['user' => $user, 'profile' => $profile] );
+    }
+//    public function edit($id)
+//    {
+//        $profile = Profile::find($id);
+//
+//        return view('edit')->with('post', $post);
+//    }
+
+    public function show($id)
+    {
+        $user = User::find($id);
+        $profile = $user->profile;
         return view('profile', ['user' => $user, 'profile' => $profile] );
     }
 

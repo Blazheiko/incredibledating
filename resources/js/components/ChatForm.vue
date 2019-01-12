@@ -7,7 +7,6 @@
                 Send
             </button>
         </span>
-        <!--<input ref="photo" type="file" class="form-control" name="photo" @change="sync">-->
 
     </div>
 </template>
@@ -19,7 +18,6 @@
         data() {
             return {
                 newMessage: '',
-                // photo:''
             }
         },
 
@@ -32,15 +30,6 @@
                     this.newMessage = ''}
 
             },
-            // sync (e) {
-            //     e.preventDefault();
-            //     let photo = e.target.files[0];
-            //     const data = new FormData();
-            //     data.append('photo', photo);
-            //
-            //     this.$emit('photosend', {
-            //         photo: data
-            //
         }
     }
 </script>

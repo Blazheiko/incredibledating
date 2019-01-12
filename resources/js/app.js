@@ -7,11 +7,12 @@
 
 require('./bootstrap');
 window.Vue = require('vue');
+//
+// Vue.component('example', require('./components/ExampleComponent.vue').default);
+Vue.component('chat-messages', require('./components/ChatMessages.vue').default);
+Vue.component('chat-form', require('./components/ChatForm.vue').default);
+Vue.component('chat-list', require('./components/ChatList.vue').default);
 
-//Vue.component('example', require('./components/Example.vue'));
-Vue.component('chat-messages', require('./components/ChatMessages.vue'));
-Vue.component('chat-form', require('./components/ChatForm.vue'));
-// Vue.component('new-photo', require('./components/NewPhoto.vue'));
 
 const app = new Vue({
     el: '#app',

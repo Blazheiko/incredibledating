@@ -6,11 +6,11 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h1>BLOG</h1>
+                        <h1>Блог пользователя</h1>
                         <a href="{{ url('post/create') }}">Создать новую статью</a></div>
 
 
-                    <div class="panel-body">
+                    <div class="page-item">
                         @if (session('status'))
                             <div class="alert alert-success">
                                 {{ session('status') }}
@@ -39,11 +39,11 @@
                                 </article>
 
                                 {{--<div style="float: left; margin-right: 3px">--}}
-                                    {{--<form action="/post/{{ $post->id}}/edit"><button>Edit</button> </form>--}}
+                                    {{--<form action="/post/{{ $post->id}}/edit"><button>Редактировать</button> </form>--}}
 
                                 {{--</div>--}}
 
-                                {{--<form action="/post/{{ $post->id}}/delete"><button>Delete</button></form>--}}
+                                {{--<form action="/post/{{ $post->id}}/delete"><button>Удалить</button></form>--}}
 
                             @endforeach
                         @endif

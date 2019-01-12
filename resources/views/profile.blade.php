@@ -12,20 +12,19 @@
                 <div class="col-md-10 col-md-offset-1">
                     <img src="/uploads/avatars/{{ $user->avatar }}" style="width:150px; height:150px; float:left; margin-right:25px;">
                     <h2>{{ $user-> name }}</h2>
-                    <form enctype="multipart/form-data" action="/profile" method="POST">
-                        <label>Обновить свое фото</label>
-                        <input type="file" name="avatar">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="submit" class="pull-right btn btn-sm btn-primary">
-                    </form>
 
-                    {{--{{ Form::open (['route'=> 'profile.update']) }}--}}
-                    {{--<div class="form-group">--}}
-                        {{--{{Form::label ('Обновить свое фото') }}--}}
-                        {{--{{Form::file('avatar')}}--}}
-                        {{--{{Form::submit ('Сохранить',['class' => 'btn btn-primary' ]) }}--}}
-                    {{--</div>--}}
-                    {{--{{ Form::close() }}--}}
+                    @if( $user->id == Auth::user()->id)
+
+                        <form enctype="multipart/form-data" action="/profile" method="POST">
+                            <label>Обновить свое фото</label>
+                            <input type="file" name="avatar">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <input type="submit" class="pull-right btn btn-sm btn-primary">
+                        </form>
+
+                    @endif
+
+
 
                 </div>
 
@@ -51,22 +50,35 @@
                     </p>
 
                 </div>
-                @else
+                    @if( $user->id == Auth::user()->id)
 
-                    {{ Form::open (['route'=> 'profile.store']) }}
-                    {{Form::token()}}
-                    <div class="form-group">
-                        {{ Form::label ('Сколько вам лет') }}
-                        {{ Form::number ('age',null,['class' => 'form-control' ]) }}
-                    </div>
-                    <div class="form-group">
-                        {{ Form::label ('Ваши увлечения') }}
-                        {{ Form::textarea ('hobbi',null,['class' => 'form-control' ]) }}
-                    </div>
-                    <div class="form-group">
-                        {{ Form::submit ('Сохранить',['class' => 'btn btn-primary' ]) }}
-                    </div>
-                    {{ Form::close() }}
+                        <div style="float: left; margin-right: 3px">
+                            <form action="/profile/{{ $profile->id}}/edit"><button>Редактировать</button> </form>
+                        </div>
+
+                    @endif
+
+                @else
+                    @if( $user->id == Auth::user()->id)
+
+                        {{ Form::open (['route'=> 'profile.store']) }}
+                        {{Form::token()}}
+                        <div class="form-group">
+                            {{ Form::label ('Сколько вам лет') }}
+                            {{ Form::number ('age',null,['class' => 'form-control' ]) }}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::label ('Ваши увлечения') }}
+                            {{ Form::textarea ('hobbi',null,['class' => 'form-control' ]) }}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::submit ('Сохранить',['class' => 'btn btn-primary' ]) }}
+                        </div>
+                        {{ Form::close() }}
+
+                    @endif
+
+
 
                 @endif
 
