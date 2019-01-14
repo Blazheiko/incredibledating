@@ -19,10 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
-        .container{
-            overflow: hidden;
-            width:900px
-        }
+
         .row{
             width: 900px;
             white-space:nowrap;
