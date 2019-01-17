@@ -46,3 +46,8 @@ Route::get('/chat', 'ChatsController@index');
 Route::get('messages', 'ChatsController@fetchMessages');
 Route::post('messages', 'ChatsController@sendMessage');
 Route::post('/photo',            ['as' => 'addphoto',  'uses' =>'UploadPhotoController']);
+
+
+Route::group( [ 'middleware' => 'admin', 'prefix' => 'admin' ], function () {
+    Route::get('/', 'Admin\AdminController@index' );
+});

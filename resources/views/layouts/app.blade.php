@@ -21,7 +21,7 @@
     <style>
 
         .row{
-            width: 900px;
+            /*width: 900px;*/
             white-space:nowrap;
         }
         /*.row div{*/
@@ -52,7 +52,7 @@
             float:left;
             overflow-y: scroll;
             height: 400px;
-            width: 585px;
+            width: 745px;
         }
 
         ::-webkit-scrollbar-track {

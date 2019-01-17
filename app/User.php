@@ -53,7 +53,7 @@ class User extends Authenticatable
     }
     public function isAdmin()
     {
-        return $this->is_admin; // поле is_admin в таблице users
+        return $this->isAdmin; // поле is_admin в таблице users
     }
     public function messages()
     {
@@ -63,4 +63,5 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class);
     }
+
 }
