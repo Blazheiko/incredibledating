@@ -118,6 +118,7 @@
 
     <!--Action boxes-->
     <div class="container-fluid">
+        @yield('content')
 
     </div>
 </div>
