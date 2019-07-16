@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Blazheiko.club</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
@@ -13,7 +13,8 @@
         <style>
             html, body {
                 background-color: #fff;
-                color: #636b6f;
+                background-image: url("/images/background.jpg");
+                color: #081d27;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
@@ -65,12 +66,15 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+
             @if (Route::has('login'))
                 <div class="top-right links">
+                    {{--<a href="/newlogin">NewLogin</a>--}}
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
+
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
@@ -81,12 +85,12 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Incredible Dating
+                    Blazheiko.club
                 </div>
 
                 <div class="links">
                     <a href="/blogs">Blogs</a>
-                    <a href="/dating">Dating</a>
+                    {{--<a href="/dating">Dating</a>--}}
 
                 </div>
             </div>

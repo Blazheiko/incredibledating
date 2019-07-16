@@ -1,7 +1,7 @@
 
 <template>
     <ul class="chat">
-        <a>В компоненте</a>
+        <a>Messages</a>
         <li class="left clearfix" v-for="message in messages">
             <div   class="chat-body clearfix">
                 <div class="header">
@@ -26,7 +26,7 @@
 
                          </div>
 
-                    </span>
+                </span>
 
 
 

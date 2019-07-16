@@ -18,10 +18,10 @@
             {{--</div>--}}
         {{--</div>--}}
     {{--</div>--}}
-    @foreach($users->chunk(3) as $userLine)
+    @foreach($users->chunk(4) as $userLine)
         <div class="row">
             @foreach($userLine as $user)
-                <div class="col-md-4 portfolio-item" >
+                <div class="col-md-3 col-sm-6" >
                     <a href="/profile/{{$user->id}}/show">
                        <span><img class="img-responsive" src="/uploads/avatars/{{ $user->avatar }}" style="width:200px; height:200px; float:left; margin-right:25px;" alt=""></span>
                     </a>

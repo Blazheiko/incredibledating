@@ -11,7 +11,7 @@
                     {{--<example></example>--}}
                     <div class="panel-heading">Chats</div>
 
-                    <div  ref='messageDisplay' class="panel-body">
+                    <div  ref='messageDisplay' class="panel-bodychat">
 
                         <chat-messages :messages="messages"></chat-messages>
                     </div>

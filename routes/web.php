@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/newlogin', 'Auth\NewLoginController@newlogin')->name('newlogin');
 
 Route::get('/profile',               ['as' => 'profile',   'uses' => 'UserController@profile']);
 Route::post('profile',               ['as' => 'profile.update',  'uses' =>'UserController@update_avatar']);
@@ -46,6 +47,15 @@ Route::get('/chat', 'ChatsController@index');
 Route::get('messages', 'ChatsController@fetchMessages');
 Route::post('messages', 'ChatsController@sendMessage');
 Route::post('/photo',            ['as' => 'addphoto',  'uses' =>'UploadPhotoController']);
+
+//Route::get('/facebook/redirect', 'Auth\SocialAuthFacebookController@redirectToProvider');
+//Route::get('/facebook/callback', 'Auth\SocialAuthFacebookController@handleProviderCallback');
+//
+//Route::get('/google/redirect', 'Auth\SocialAuthGoogleController@redirectToProvider');
+//Route::get('/google/callback', 'Auth\SocialAuthGoogleController@handleProviderCallback');
+
+Route::get('/{provider}/redirect', 'Auth\SocialAuthController@redirectToProvider');
+Route::get('/{provider}/callback', 'Auth\SocialAuthController@handleProviderCallback');
 
 
 Route::group( [ 'middleware' => 'admin', 'prefix' => 'admin' ], function () {

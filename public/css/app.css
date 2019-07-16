@@ -65,6 +65,7 @@ section {
 }
 
 body {
+    background-image: url("/images/antiquepaper_1920x1234.jpg");
   margin: 0;
   font-family: "Nunito", sans-serif;
   font-size: 0.9rem;
@@ -661,7 +662,6 @@ pre code {
 .col-md-11,
 .col-md-10,
 .col-md-9,
-.col-md-8,
 .col-md-7,
 .col-md-6,
 .col-md-5,
@@ -1108,12 +1108,6 @@ pre code {
     flex: 0 0 58.3333333333%;
     max-width: 58.3333333333%;
   }
-
-  .col-md-8 {
-    flex: 0 0 66.6666666667%;
-    max-width: 66.6666666667%;
-  }
-
   .col-md-9 {
     flex: 0 0 75%;
     max-width: 75%;
