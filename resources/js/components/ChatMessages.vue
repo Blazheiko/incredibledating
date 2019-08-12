@@ -21,7 +21,6 @@
                               <div class="col-md-10 col-md-offset-1">
                                  <img v-bind:src="'/uploads/photos/'+ message.photo_url"  style="width:150px; height:150px; float:left; margin-right:25px;">
 
-                                  <!--<img v-bind:src="/uploads/photos/ v-html="message.photo_url "  " style="width:150px; height:150px; float:left; border-radius:50%; margin-right:25px;">-->
                                </div>
 
                          </div>

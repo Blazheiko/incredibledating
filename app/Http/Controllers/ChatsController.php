@@ -23,7 +23,7 @@ class ChatsController extends Controller
      */
     public function index()
     {
-//        dd("в контроллере");
+       // dd(Message::with('user')->get());
         return view('chat');
     }
 
@@ -34,7 +34,8 @@ class ChatsController extends Controller
      */
     public function fetchMessages()
     {
-        //dd("в чат контроллере");
+//        dd(Message::with('user')->get());
+
         return Message::with('user')->get();
     }
 
